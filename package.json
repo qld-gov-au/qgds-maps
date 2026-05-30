@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Build artifacts for QLD LGA maps frontend assets.",
+  "description": "Build artifacts for QLD LGA maps frontend assets. ",
   "scripts": {
     "dev": "node build.mjs dev && esbuild --servedir=. --serve-fallback=src/index.html --serve=localhost:4200",
     "build:dev": "node build.mjs dev",
