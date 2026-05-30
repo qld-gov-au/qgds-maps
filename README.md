@@ -11,12 +11,12 @@ cp .env.example .env
 npm run dev
 ```
 
-### Environment variables
+### Environment variables (dev setup)
 
 ```
-QGDS_EXT_LEAFLET_IMAGE_BASE_URL=https://www.qsbc.qld.gov.au/_resources/lga-map-images/
-QGDS_EXT_LEAFLET_IMAGE_DATA_PATH=https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_lga_images.json
-QGDS_EXT_LEAFLET_GEOJSON_PATH=https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_interactive_map.json
+QGDS_EXT_LEAFLET_IMAGE_BASE_URL=/data/assets/
+QGDS_EXT_LEAFLET_IMAGE_DATA_PATH=/data/qsbc_lga_images.json
+QGDS_EXT_LEAFLET_GEOJSON_PATH=/data/qsbc_interactive_map.json
 ```
 
 All three values are required for local builds.
@@ -51,6 +51,8 @@ Clients are configured in `.github/workflows/build.yml` under `matrix.client`. E
 - `image_base_url`
 - `image_data_path`
 - `geojson_path`
+
+These are the same as the local environment variables in dev setup.
 
 The workflow builds once per client. With 10 clients, one workflow run creates 10 client builds and publishes 10 release branches.
 
