@@ -1,0 +1,23 @@
+{
+  "name": "qld-lga-maps",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Build artifacts for QLD LGA maps frontend assets.",
+  "scripts": {
+    "dev": "node build.mjs dev && esbuild --servedir=. --serve-fallback=src/index.html --serve=localhost:4200",
+    "build:dev": "node build.mjs dev",
+    "build:prod": "node build.mjs prod",
+    "test": "node --test tests/smoke.spec.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "sass": "^1.100.0"
+  }
+}

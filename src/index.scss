@@ -1,0 +1,58 @@
+.qgds-ext-leaflet {
+  height: 100vh;
+  outline: none;
+  width: 100%;
+
+  &:focus,
+  &:focus-visible,
+  &:active,
+  .leaflet-container:focus,
+  .leaflet-container:focus-visible,
+  .leaflet-container:active,
+  .leaflet-interactive:focus,
+  .leaflet-interactive:focus-visible,
+  .leaflet-interactive:active {
+    outline: none;
+  }
+
+  .lga-tooltip-hover {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+
+  .lga-popup-image .leaflet-popup-content {
+    min-width: 180px;
+    text-align: center;
+  }
+
+  .qsbc-location-title {
+    color: #ff671f;
+    display: block;
+    margin-bottom: 6px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus,
+    &:focus-visible,
+    &:active {
+      outline: none;
+      text-decoration: none;
+    }
+  }
+
+  .qsbc-location-title-no-link {
+    color: #002a3a;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .qgds-ext-leaflet-popup-image {
+    border-radius: 5px;
+    height: auto;
+    max-width: 170px;
+    width: 100%;
+  }
+}
