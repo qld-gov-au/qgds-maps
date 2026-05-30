@@ -11,8 +11,8 @@ cp .env.example .env
 npm run dev
 ```
 
-### Environment variables
-
+### Environment variables (local work)
+.env:
 ```
 QGDS_EXT_LEAFLET_IMAGE_BASE_URL=https://www.qsbc.qld.gov.au/_resources/lga-map-images/
 QGDS_EXT_LEAFLET_IMAGE_DATA_PATH=https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_lga_images.json
