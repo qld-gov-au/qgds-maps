@@ -128,10 +128,10 @@ async function initMap() {
         if (activePopup) { activePopup.remove(); activePopup = null; }
         closeActiveTooltip();
 
-        let html = `<div class="image-wrapper info-window-content" style="text-align:center;">`;
+        let html = `<div class="qgds-ext-leaflet-popup-content">`;
         html += hasLink
-          ? `<a href="${safeLink}" class="qsbc-location-title" target="_blank"><span style="font-size:18px;font-weight:400;">${safeName}</span></a>`
-          : `<span class="qsbc-location-title-no-link" style="font-size:18px;font-weight:400;">${safeName}</span>`;
+          ? `<a href="${safeLink}" class="qsbc-location-title qgds-ext-leaflet-popup-title" target="_blank">${safeName}</a>`
+          : `<span class="qsbc-location-title-no-link qgds-ext-leaflet-popup-title">${safeName}</span>`;
         if (safeImg) {
           const imgSrc = escHtml(new URL(safeImg, imageBase).toString());
           const img = `<img src="${imgSrc}" alt="${safeName}" class="qgds-ext-leaflet-popup-image">`;
