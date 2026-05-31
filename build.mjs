@@ -194,7 +194,6 @@ async function build() {
 
   await buildStyles();
 
-  await cp(resolve(root, "src", "data"), resolve(distDir, "data"), { recursive: true });
   await cp(
     resolve(root, "node_modules", "leaflet", "dist", "images"),
     resolve(distDir, "assets", "leaflet"),

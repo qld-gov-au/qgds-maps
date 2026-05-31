@@ -18,6 +18,10 @@ test('smoke: build metadata includes data paths', () => {
   assert.ok(meta.geojsonPath.length > 0);
 });
 
+test('smoke: data is not emitted to dist', () => {
+  assert.equal(existsSync('./dist/data'), false, 'data should be loaded from configured URLs');
+});
+
 test('smoke: HTML is not emitted to dist', () => {
   assert.equal(existsSync('./dist/index.html'), false, 'dist should only contain embeddable assets');
 });

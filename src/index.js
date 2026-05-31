@@ -69,6 +69,14 @@ async function initMap() {
   ]);
 
   let activePopup = null;
+  let activeTooltip = null;
+
+  function closeActiveTooltip() {
+    if (activeTooltip) {
+      activeTooltip.remove();
+      activeTooltip = null;
+    }
+  }
 
   L.geoJSON(geoData, {
     filter: f => f.geometry.type === 'MultiPolygon',
@@ -88,34 +96,42 @@ async function initMap() {
       const safeName = escHtml(name);
       const safeLink = escHtml(link);
       const safeImg  = imgFile ? escHtml(imgFile) : null;
+      const label = hasLink
+        ? `<a href="${safeLink}" target="_blank" class="qsbc-location-title">${safeName}</a>`
+        : `<span class="qsbc-location-title-no-link">${safeName}</span>`;
 
       layer.on('mouseover', e => {
         if (activePopup) return;
-        const label = hasLink
-          ? `<a href="${safeLink}" target="_blank" class="qsbc-location-title">${safeName}</a>`
-          : `<span class="qsbc-location-title-no-link">${safeName}</span>`;
-        layer.bindTooltip(label, {
+        closeActiveTooltip();
+        activeTooltip = L.tooltip({
           sticky:    true,
           direction: 'top',
           offset:    [0, -10],
           className: 'lga-tooltip-hover',
-        }).openTooltip(e.latlng);
+        })
+          .setLatLng(e.latlng)
+          .setContent(label)
+          .addTo(map);
+      });
+
+      layer.on('mousemove', e => {
+        if (activeTooltip) {
+          activeTooltip.setLatLng(e.latlng);
+        }
       });
 
       layer.on('mouseout', () => {
-        layer.closeTooltip();
-        layer.unbindTooltip();
+        closeActiveTooltip();
       });
 
       layer.on('click', e => {
         if (activePopup) { activePopup.remove(); activePopup = null; }
-        layer.closeTooltip();
-        layer.unbindTooltip();
+        closeActiveTooltip();
 
-        let html = `<div class="image-wrapper info-window-content" style="text-align:center;">`;
+        let html = `<div class="qgds-ext-leaflet-popup-content">`;
         html += hasLink
-          ? `<a href="${safeLink}" class="qsbc-location-title" target="_blank"><span style="font-size:18px;font-weight:400;">${safeName}</span></a>`
-          : `<span class="qsbc-location-title-no-link" style="font-size:18px;font-weight:400;">${safeName}</span>`;
+          ? `<a href="${safeLink}" class="qsbc-location-title qgds-ext-leaflet-popup-title" target="_blank">${safeName}</a>`
+          : `<span class="qsbc-location-title-no-link qgds-ext-leaflet-popup-title">${safeName}</span>`;
         if (safeImg) {
           const imgSrc = escHtml(new URL(safeImg, imageBase).toString());
           const img = `<img src="${imgSrc}" alt="${safeName}" class="qgds-ext-leaflet-popup-image">`;

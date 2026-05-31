@@ -11,12 +11,13 @@ cp .env.example .env
 npm run dev
 ```
 
-### Environment variables (local work)
+### Environment variables (dev setup)
+
 .env:
 ```
-QGDS_EXT_LEAFLET_IMAGE_BASE_URL=https://www.qsbc.qld.gov.au/_resources/lga-map-images/
-QGDS_EXT_LEAFLET_IMAGE_DATA_PATH=https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_lga_images.json
-QGDS_EXT_LEAFLET_GEOJSON_PATH=https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_interactive_map.json
+QGDS_EXT_LEAFLET_IMAGE_BASE_URL=/data/assets/
+QGDS_EXT_LEAFLET_IMAGE_DATA_PATH=/data/qsbc_lga_images.json
+QGDS_EXT_LEAFLET_GEOJSON_PATH=/data/qsbc_interactive_map.json
 ```
 
 All three values are required for local builds.
@@ -52,6 +53,8 @@ Clients are configured in `.github/workflows/build.yml` under `matrix.client`. E
 - `image_data_path`
 - `geojson_path`
 
+These are the same as the local environment variables in dev setup.
+
 The workflow builds once per client. With 10 clients, one workflow run creates 10 client builds and publishes 10 release branches.
 
 Release branches are client-specific:
@@ -66,4 +69,4 @@ Current behavior: pull requests into `development`, `uat`, or `main` also publis
 
 ## Clients
 
-The map code is shared. Client-specific content lives in data files and hosted image folders. To add another client, add its image metadata JSON under `src/data/`, upload its images, then add a client entry to the workflow matrix.
+The map code is shared. Client-specific content lives in data files and hosted image folders. To add another client, publish its data/images, then add a client entry to the workflow matrix.

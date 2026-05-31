@@ -15,6 +15,12 @@
     outline: none;
   }
 
+  .qsbc-location-title,
+  .qsbc-location-title-no-link {
+    display: block;
+    margin-bottom: 6px;
+  }
+
   .lga-tooltip-hover {
     font-size: 14px;
     padding: 4px 8px;
@@ -26,9 +32,6 @@
   }
 
   .qsbc-location-title {
-    color: #ff671f;
-    display: block;
-    margin-bottom: 6px;
     text-decoration: none;
 
     &:hover {
@@ -43,10 +46,13 @@
     }
   }
 
-  .qsbc-location-title-no-link {
-    color: #002a3a;
-    display: block;
-    margin-bottom: 6px;
+  .qgds-ext-leaflet-popup-content {
+    text-align: center;
+  }
+
+  .qgds-ext-leaflet-popup-title {
+    font-size: 18px;
+    font-weight: 400;
   }
 
   .qgds-ext-leaflet-popup-image {
