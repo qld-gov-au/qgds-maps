@@ -13,6 +13,7 @@ npm run dev
 
 ### Environment variables (dev setup)
 
+.env:
 ```
 QGDS_EXT_LEAFLET_IMAGE_BASE_URL=/data/assets/
 QGDS_EXT_LEAFLET_IMAGE_DATA_PATH=/data/qsbc_lga_images.json
@@ -68,4 +69,4 @@ Current behavior: pull requests into `development`, `uat`, or `main` also publis
 
 ## Clients
 
-The map code is shared. Client-specific content lives in data files and hosted image folders. To add another client, add its image metadata JSON under `src/data/`, upload its images, then add a client entry to the workflow matrix.
+The map code is shared. Client-specific content lives in data files and hosted image folders. To add another client, publish its data/images, then add a client entry to the workflow matrix.
