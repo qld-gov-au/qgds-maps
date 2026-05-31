@@ -680,6 +680,11 @@
 .qgds-ext-leaflet .leaflet-interactive:active {
   outline: none;
 }
+.qgds-ext-leaflet .qsbc-location-title,
+.qgds-ext-leaflet .qsbc-location-title-no-link {
+  display: block;
+  margin-bottom: 6px;
+}
 .qgds-ext-leaflet .lga-tooltip-hover {
   font-size: 14px;
   padding: 4px 8px;
@@ -689,9 +694,6 @@
   text-align: center;
 }
 .qgds-ext-leaflet .qsbc-location-title {
-  color: #ff671f;
-  display: block;
-  margin-bottom: 6px;
   text-decoration: none;
 }
 .qgds-ext-leaflet .qsbc-location-title:hover {
@@ -701,10 +703,12 @@
   outline: none;
   text-decoration: none;
 }
-.qgds-ext-leaflet .qsbc-location-title-no-link {
-  color: #002a3a;
-  display: block;
-  margin-bottom: 6px;
+.qgds-ext-leaflet .qgds-ext-leaflet-popup-content {
+  text-align: center;
+}
+.qgds-ext-leaflet .qgds-ext-leaflet-popup-title {
+  font-size: 18px;
+  font-weight: 400;
 }
 .qgds-ext-leaflet .qgds-ext-leaflet-popup-image {
   border-radius: 5px;
