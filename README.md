@@ -1,7 +1,8 @@
 # QGDS maps
 
-Embeddable Leaflet maps for Queensland Government Design System websites.
-This is not production ready and is an active prototype subject to change at any moment.
+
+Embeddable Leaflet maps for Queensland Government Design System websites. 
+This is ***not production ready*** and is an active prototype subject to change at any moment.
 
 ## Develop
 
