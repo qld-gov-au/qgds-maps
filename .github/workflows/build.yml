@@ -10,6 +10,10 @@ name: Build and distribute
 #   uat          → PR   → dev build  → release-uat-<client>
 #   main         → PR   → prod build → release-production-<client>
 #
+# Client URL sets:
+#   feature-test/development use each client's dev_* URLs
+#   uat/main use each client's release_* URLs
+#
 # ── Team configuration ─────────────────────────────────────────────────────────
 # DIST_SOURCE  The folder whose contents are pushed to the release branch
 # ───────────────────────────────────────────────────────────────────────────────
@@ -57,9 +61,12 @@ jobs:
       matrix:
         client:
           - id: qsbc
-            image_base_url: https://www.qsbc.qld.gov.au/_resources/lga-map-images/
-            image_data_path: https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_lga_images.json
-            geojson_path: https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_interactive_map.json
+            dev_image_base_url: https://www.qld.gov.au/dev-qsbc/_resources/lga-map-images/
+            dev_image_data_path: https://www.qld.gov.au/dev-qsbc/_resources/lga-map-data/qsbc_lga_images.json
+            dev_geojson_path: https://www.qld.gov.au/dev-qsbc/_resources/lga-map-data/qsbc_interactive_map.json
+            release_image_base_url: https://www.qsbc.qld.gov.au/_resources/lga-map-images/
+            release_image_data_path: https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_lga_images.json
+            release_geojson_path: https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_interactive_map.json
 
     env:
       DIST_SOURCE: dist
@@ -83,11 +90,20 @@ jobs:
           REF="${{ github.base_ref || github.ref_name }}"
           case "$REF" in
             main) echo "build_env=prod"  >> "$GITHUB_OUTPUT"
-                  echo "release_branch=release-production-${{ matrix.client.id }}" >> "$GITHUB_OUTPUT" ;;
+                  echo "release_branch=release-production-${{ matrix.client.id }}" >> "$GITHUB_OUTPUT"
+                  echo "image_base_url=${{ matrix.client.release_image_base_url }}" >> "$GITHUB_OUTPUT"
+                  echo "image_data_path=${{ matrix.client.release_image_data_path }}" >> "$GITHUB_OUTPUT"
+                  echo "geojson_path=${{ matrix.client.release_geojson_path }}" >> "$GITHUB_OUTPUT" ;;
             uat)  echo "build_env=dev"   >> "$GITHUB_OUTPUT"
-                  echo "release_branch=release-uat-${{ matrix.client.id }}" >> "$GITHUB_OUTPUT" ;;
+                  echo "release_branch=release-uat-${{ matrix.client.id }}" >> "$GITHUB_OUTPUT"
+                  echo "image_base_url=${{ matrix.client.release_image_base_url }}" >> "$GITHUB_OUTPUT"
+                  echo "image_data_path=${{ matrix.client.release_image_data_path }}" >> "$GITHUB_OUTPUT"
+                  echo "geojson_path=${{ matrix.client.release_geojson_path }}" >> "$GITHUB_OUTPUT" ;;
             *)    echo "build_env=dev"   >> "$GITHUB_OUTPUT"
-                  echo "release_branch=release-dev-${{ matrix.client.id }}" >> "$GITHUB_OUTPUT" ;;
+                  echo "release_branch=release-dev-${{ matrix.client.id }}" >> "$GITHUB_OUTPUT"
+                  echo "image_base_url=${{ matrix.client.dev_image_base_url }}" >> "$GITHUB_OUTPUT"
+                  echo "image_data_path=${{ matrix.client.dev_image_data_path }}" >> "$GITHUB_OUTPUT"
+                  echo "geojson_path=${{ matrix.client.dev_geojson_path }}" >> "$GITHUB_OUTPUT" ;;
           esac
 
       - name: Install dependencies
@@ -100,9 +116,9 @@ jobs:
 
       - name: Build
         env:
-          QGDS_EXT_LEAFLET_IMAGE_BASE_URL: ${{ matrix.client.image_base_url }}
-          QGDS_EXT_LEAFLET_IMAGE_DATA_PATH: ${{ matrix.client.image_data_path }}
-          QGDS_EXT_LEAFLET_GEOJSON_PATH: ${{ matrix.client.geojson_path }}
+          QGDS_EXT_LEAFLET_IMAGE_BASE_URL: ${{ steps.config.outputs.image_base_url }}
+          QGDS_EXT_LEAFLET_IMAGE_DATA_PATH: ${{ steps.config.outputs.image_data_path }}
+          QGDS_EXT_LEAFLET_GEOJSON_PATH: ${{ steps.config.outputs.geojson_path }}
         run: npm run build:${{ steps.config.outputs.build_env }}
 
       - name: Run smoke tests
