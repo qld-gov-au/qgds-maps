@@ -61,12 +61,12 @@ jobs:
       matrix:
         client:
           - id: qsbc
-            dev_image_base_url: https://www.qld.gov.au/dev-qsbc/_resources/lga-map-images/
-            dev_image_data_path: https://www.qld.gov.au/dev-qsbc/_resources/lga-map-data/qsbc_lga_images.json
-            dev_geojson_path: https://www.qld.gov.au/dev-qsbc/_resources/lga-map-data/qsbc_interactive_map.json
+            dev_image_base_url: https://qsbc.qld.gov.au/_resources/lga-map-images/
+            dev_image_data_path: https://www.qsbc.qld.gov.au/__data/assets/file/0033/887226/qsbc-lga-images.json
+            dev_geojson_path: https://www.qsbc.qld.gov.au/__data/assets/file/0032/887225/qsbc-interactive-map.json
             release_image_base_url: https://www.qsbc.qld.gov.au/_resources/lga-map-images/
-            release_image_data_path: https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_lga_images.json
-            release_geojson_path: https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_interactive_map.json
+            release_image_data_path: https://www.qsbc.qld.gov.au/__data/assets/file/0033/887226/qsbc-lga-images.json
+            release_geojson_path: https://www.qsbc.qld.gov.au/__data/assets/file/0032/887225/qsbc-interactive-map.json
 
     env:
       DIST_SOURCE: dist
