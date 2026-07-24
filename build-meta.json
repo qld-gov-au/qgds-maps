@@ -1,11 +1,11 @@
 {
   "mode": "dev",
-  "builtAt": "2026-07-06T06:01:18.312Z",
+  "builtAt": "2026-07-24T08:00:34.453Z",
   "entryFile": "src/index.js",
   "outputFile": "dist/qgds-ext-leaflet.min.js",
   "styleFile": "src/index.scss",
   "outputStyleFile": "dist/qgds-ext-leaflet.min.css",
-  "imageBaseUrl": "https://qsbc.qld.gov.au/_resources/lga-map-images/",
-  "imageDataPath": "https://www.qsbc.qld.gov.au/__data/assets/file/0033/887226/qsbc-lga-images.json",
-  "geojsonPath": "https://www.qsbc.qld.gov.au/__data/assets/file/0032/887225/qsbc-interactive-map.json"
+  "imageBaseUrl": "https://www.qsbc.qld.gov.au/_resources/lga-map-images/",
+  "imageDataPath": "https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_lga_images.json",
+  "geojsonPath": "https://www.qsbc.qld.gov.au/_resources/lga-map-data/qsbc_interactive_map.json"
 }
