@@ -50,9 +50,14 @@ GitHub Actions builds `dist/`, runs tests, then publishes the built assets to re
 Clients are configured in `.github/workflows/build.yml` under `matrix.client`. Each client sets:
 
 - `id`
-- `image_base_url`
-- `image_data_path`
-- `geojson_path`
+- `dev_image_base_url`
+- `dev_image_data_path`
+- `dev_geojson_path`
+- `release_image_base_url`
+- `release_image_data_path`
+- `release_geojson_path`
+
+The workflow maps these to the build environment variables.
 
 These are the same as the local environment variables in dev setup.
 
@@ -60,9 +65,9 @@ The workflow builds once per client. With 10 clients, one workflow run creates 1
 
 Release branches are client-specific:
 
-- `development` builds publish to `release-dev-<client>`
-- `uat` builds publish to `release-uat-<client>`
-- `main` builds publish to `release-production-<client>`
+- `feature-test` and `development` use `dev_*` URLs and publish to `release-dev-<client>`
+- `uat` uses `release_*` URLs and publishes to `release-uat-<client>`
+- `main` uses `release_*` URLs and publishes to `release-production-<client>`
 
 Example: `qsbc` publishes to `release-dev-qsbc`, `release-uat-qsbc`, and `release-production-qsbc`.
 
